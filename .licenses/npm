@@ -1,0 +1,9 @@
+{
+  "licenses": [
+    {
+      "name": "foundry-rs/forge-std",
+      "version": "latest",
+      "license": "MIT"
+    }
+  ]
+}
