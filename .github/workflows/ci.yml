@@ -4,12 +4,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches directory that already exists and is not empty.
-
-To resolve this issue, you should update your workflow to ensure that the directory is cleaned up before cloning the repository. Here is an updated version of your `.github/workflows/ci.yml` file:
-
-```yaml
-name: [ "main" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -21,46 +16,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Remove existing directory
-: CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
-
-jobs        run: |
+        run: |
           if [ -d "workspace-blank" ]; then
             rm -rf workspace-blank
           fi
 
-:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/      - name: Clone repository
-        run: git clone https://github.com/Setland34/forge-test-repo workspace-blank
-
-      - namecheckout@v4
-
-      - name: Remove existing directory
-        run: |
-          if [ -d "workspace-blank" ];: Run a one-line script
+      - name: Run a one-line script
         run: echo Hello, world!
 
-      - name: Run a multi then
-            rm -rf workspace-blank
-          fi
-
-      - name: Clone repository
-        run: |
-          git-line script
+      - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project.
           echo test, and deploy your project.
 
       - name: Cache dependencies
