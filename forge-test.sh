@@ -7,8 +7,11 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-# Run the forge test command with the provided --fork-url parameter
-forge test --fork-url "$1"
+# Extract the fork URL from the parameter
+FORK_URL=$1
 
-# Output a success message after the tests are completed
+# Run the forge test command with the provided URL
+forge test --fork-url $FORK_URL
+
+# Output success message
 echo "Forge test task completed successfully."

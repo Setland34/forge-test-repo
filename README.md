@@ -1,14 +1,12 @@
 # Forge Test Repository
 
-This repository contains scripts to handle the "forge install" and "forge test" tasks. The repository is empty initially, and any task executed on it should be considered a new capability and needs to be created.
+This repository contains scripts and instructions for running tests on a project using the `forge test` command with the `--fork-url` parameter.
 
 ## Purpose
 
-The purpose of this repository is to provide a setup for running tests on a project using the `forge test` command with the `--fork-url` parameter. The repository includes scripts to install necessary dependencies and run tests.
+The purpose of this repository is to provide a setup for running tests on a project using the `forge test` command with a specified Ethereum node URL. This allows for testing in an environment that mimics the state of the specified Ethereum network.
 
-## Instructions
-
-### 1. Install Dependencies
+## Install Dependencies
 
 To install the necessary dependencies for the project, follow these steps:
 
@@ -26,33 +24,15 @@ To install the necessary dependencies for the project, follow these steps:
     ./forge-install.sh
     ```
 
-### 2. Run Tests
-
-To run tests on the project using the `forge test` command with the `--fork-url` parameter, follow these steps:
-
-1. Ensure you have cloned the repository to your local machine.
-2. Navigate to the root directory of the repository.
-3. Make the `forge-test.sh` script executable by running the following command:
-
-    ```sh
-    chmod +x forge-test.sh
-    ```
-
-4. Run the `forge-test.sh` script with the `--fork-url` parameter:
-
-    ```sh
-    ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY
-    ```
-
-### 3. Verify Installation
+## Verify Installation
 
 To verify the installation of `foundry-rs/forge-std`, follow these steps:
 
-1. Ensure you have run the `forge-install.sh` script.
+1. Ensure you have run the `forge-install.sh` script located in the root directory of the repository.
 2. Check the output of the `forge-install.sh` script for a success message: "Forge install task completed successfully."
-3. Verify that the `foundry-rs/forge-std` package is installed by checking the project directory for the presence of the `forge-std` package.
+3. Verify that the `foundry-rs/forge-std` package is installed by checking the project directory for the presence of the `forge-std` package. This can be done by listing the contents of the project directory and looking for the `forge-std` package.
 
-### 4. Add Tests to the Repository
+## Add Tests
 
 To add tests to the repository, follow these steps:
 
@@ -61,7 +41,7 @@ To add tests to the repository, follow these steps:
 3. Ensure that the test files are written in a format compatible with the `forge test` command.
 4. Update the `forge-test.sh` script to include the path to the `tests` directory if necessary.
 
-### 5. Automate Test Execution
+## Automate Test Execution
 
 To automate the execution of `forge-test.sh`, you can use the `test` task defined in the `.devcontainer/devcontainer.json` file. Follow these steps:
 
@@ -74,46 +54,16 @@ To automate the execution of `forge-test.sh`, you can use the `test` task define
 
 This will run the `forge-test.sh` script with the `--fork-url` parameter and automate the execution of the tests.
 
-### 6. Continuous Integration
+## Usage
 
-This repository includes a basic workflow to help you get started with GitHub Actions for continuous integration.
+To use the `forge test` command, follow these steps:
 
-```yaml
-name: CI
+1. Ensure you have cloned the repository to your local machine.
+2. Navigate to the repository directory.
+3. Run the `forge-test.sh` script with the `--fork-url` parameter:
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+    ```sh
+    ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY
+    ```
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Dependencies
-        run: /install.sh
-
-      - name: Build artifacts
-        run: /build.sh
-
-      - uses: actions/cache/save@v4
-        id: cache
-        with:
-          path: path/to/dependencies
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-```
-
-### 7. Cache npm Dependencies
-
-To cache npm dependencies using GitHub Actions, add the following step to your CI workflow:
-
-```yaml
-- uses: actions/cache/save@v4
-  with:
-    key: npm-cache-${{hashfiles(package-lock.json)}}
-```
+The `forge-test.sh` script is responsible for running tests on the project using the `forge test` command with the `--fork-url` parameter. The script checks if the `--fork-url` parameter is provided and then executes the `forge test` command with the provided URL. If the `--fork-url` parameter is missing, the script will output an error message and usage instructions.

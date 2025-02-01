@@ -30,16 +30,3 @@ jobs:
         run: |
           chmod +x forge-test.sh
           ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY
-
-      - uses: actions/cache/restore@v4
-        id: restore-cache
-        with:
-          key: cache-${{ hashFiles('**/lockfiles') }}
-
-      - uses: actions/cache/save@v4
-        with:
-          key: ${{ steps.restore-cache.outputs.cache-primary-key }}
-
-      - uses: actions/cache/save@v4
-        with:
-          key: npm-cache-${{hashfiles(package-lock.json)}}

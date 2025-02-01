@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit immediately if a command exits with a non-zero status
+set -e
+
 # Update package lists
 sudo apt-get update
 
@@ -18,5 +21,5 @@ npm install
 # Install foundry-rs/forge-std
 forge install foundry-rs/forge-std
 
-# Output a success message after the installation is completed
+# Output success message
 echo "Forge install task completed successfully."
