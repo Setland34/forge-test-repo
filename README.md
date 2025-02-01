@@ -52,3 +52,11 @@ ls -l forge-test.sh
 ```
 
 The output should show that the files have executable permissions (e.g., `-rwxr-xr-x`).
+
+## Verifying the Installation of foundry-rs/forge-std
+
+To verify the installation of `foundry-rs/forge-std`, follow these steps:
+
+1. Ensure you have run the `forge-install.sh` script located in the root directory of the repository.
+2. Check the output of the `forge-install.sh` script for a success message: "Forge install task completed successfully."
+3. Verify that the `foundry-rs/forge-std` package is installed by checking the project directory for the presence of the `forge-std` package. This can be done by listing the contents of the project directory and looking for the `forge-std` package.
