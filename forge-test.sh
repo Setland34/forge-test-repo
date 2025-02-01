@@ -10,6 +10,6 @@ if [ -z "$1" ]; then
 fi
 
 # Run the forge test command with the provided --fork-url parameter
-forge test --fork-url "$1"
+forge test --fork-url "$1" --path ./tests
 
 echo "Forge test task completed successfully."
