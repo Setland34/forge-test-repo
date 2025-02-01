@@ -1,24 +1,5 @@
 {
-    "name": "forge-test-container",
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "features": {
-        "ghcr.io/devcontainers/features/node:1": {
-            "version": "lts"
-        }
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "dbaeumer.vscode-eslint"
-            ]
-        }
-    },
-    "postCreateCommand": "npm install",
-    "tasks": {
-        "test": {
-            "label": "Run Forge Tests",
-            "type": "shell",
-            "script": "./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY"
-        }
-    }
+  "tasks": {
+    "build": "chmod +x forge-install.sh && ./forge-install.sh"
+  }
 }
