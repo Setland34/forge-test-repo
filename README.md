@@ -64,3 +64,45 @@ To automate the execution of `forge-test.sh`, you can use the `test` task define
     ```
 
 This will run the `forge-test.sh` script with the `--fork-url` parameter and automate the execution of the tests.
+
+### 5. Continuous Integration
+
+This repository includes a basic workflow to help you get started with GitHub Actions for continuous integration.
+
+```yaml
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: Cache
+        uses: actions/cache@v4.2.0
+        with:
+          path: 
+          key: 
+          restore-keys: 
+          upload-chunk-size: 
+          enableCrossOsArchive: false
+          fail-on-cache-miss: false
+          lookup-only: false
+          save-always: false
+```
