@@ -18,4 +18,7 @@ cd yourproject
 # (Assuming a Node.js project for this example)
 npm install
 
+# Install foundry-rs/forge-std
+forge install foundry-rs/forge-std
+
 echo "Forge install task completed successfully."
