@@ -1,10 +1,6 @@
 # Forge Test Repository
 
-This repository contains scripts and instructions for running tests on a project using the `forge test` command with the `--fork-url` parameter.
-
-## Purpose
-
-The purpose of this repository is to provide a setup for running tests on a project using the `forge test` command with a specified Ethereum node URL. This allows for testing in an environment that mimics the state of the specified Ethereum network.
+This repository contains scripts and instructions for setting up and running tests using the `forge` tool.
 
 ## Install Dependencies
 
@@ -43,27 +39,14 @@ To add tests to the repository, follow these steps:
 
 ## Automate Test Execution
 
-To automate the execution of `forge-test.sh`, you can use the `test` task defined in the `.devcontainer/devcontainer.json` file. Follow these steps:
+To automate the execution of `forge-test.sh`, you can follow these steps:
 
 1. Ensure the `forge-test.sh` script is executable by running `chmod +x forge-test.sh`.
-2. Run the following command to execute the `test` task:
+2. Use the `test` task defined in the `.devcontainer/devcontainer.json` file to automate the execution of the `forge-test.sh` script with the `--fork-url` parameter.
+3. Run the following command to execute the `test` task:
 
     ```sh
     devcontainer task test
     ```
 
 This will run the `forge-test.sh` script with the `--fork-url` parameter and automate the execution of the tests.
-
-## Usage
-
-To use the `forge test` command, follow these steps:
-
-1. Ensure you have cloned the repository to your local machine.
-2. Navigate to the repository directory.
-3. Run the `forge-test.sh` script with the `--fork-url` parameter:
-
-    ```sh
-    ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY
-    ```
-
-The `forge-test.sh` script is responsible for running tests on the project using the `forge test` command with the `--fork-url` parameter. The script checks if the `--fork-url` parameter is provided and then executes the `forge test` command with the provided URL. If the `--fork-url` parameter is missing, the script will output an error message and usage instructions.
