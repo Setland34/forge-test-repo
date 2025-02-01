@@ -20,10 +20,6 @@ jobs:
           if [ -d "workspace-blank" ]; then
             rm -rf workspace-blank
           fi
-          if [ -d "workspace-blank" ]; then
-            echo "Failed to remove workspace-blank directory"
-            exit 1
-          fi
 
       - name: Clone repository
         run: |
@@ -36,3 +32,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
