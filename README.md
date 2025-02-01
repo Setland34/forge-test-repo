@@ -52,7 +52,16 @@ To verify the installation of `foundry-rs/forge-std`, follow these steps:
 2. Check the output of the `forge-install.sh` script for a success message: "Forge install task completed successfully."
 3. Verify that the `foundry-rs/forge-std` package is installed by checking the project directory for the presence of the `forge-std` package.
 
-### 4. Automate Test Execution
+### 4. Add Tests to the Repository
+
+To add tests to the repository, follow these steps:
+
+1. Create a new directory named `tests` in the root directory of the repository.
+2. Add your test files to the `tests` directory. These files should contain the test cases for your project.
+3. Ensure that the test files are written in a format compatible with the `forge test` command.
+4. Update the `forge-test.sh` script to include the path to the `tests` directory if necessary.
+
+### 5. Automate Test Execution
 
 To automate the execution of `forge-test.sh`, you can use the `test` task defined in the `.devcontainer/devcontainer.json` file. Follow these steps:
 
@@ -65,7 +74,7 @@ To automate the execution of `forge-test.sh`, you can use the `test` task define
 
 This will run the `forge-test.sh` script with the `--fork-url` parameter and automate the execution of the tests.
 
-### 5. Continuous Integration
+### 6. Continuous Integration
 
 This repository includes a basic workflow to help you get started with GitHub Actions for continuous integration.
 
