@@ -45,13 +45,10 @@ jobs:
 
       # Caching step
       - name: Cache
-        uses: actions/cache@v4.2.0
+        uses: actions/cache@v4
         with:
-          path: 
-          key: 
-          restore-keys: # optional
-          upload-chunk-size: # optional
-          enableCrossOsArchive: # optional, default is false
-          fail-on-cache-miss: # optional, default is false
-          lookup-only: # optional, default is false
-          save-always: # optional, default is false
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
