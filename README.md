@@ -60,3 +60,16 @@ To verify the installation of `foundry-rs/forge-std`, follow these steps:
 1. Ensure you have run the `forge-install.sh` script located in the root directory of the repository.
 2. Check the output of the `forge-install.sh` script for a success message: "Forge install task completed successfully."
 3. Verify that the `foundry-rs/forge-std` package is installed by checking the project directory for the presence of the `forge-std` package. This can be done by listing the contents of the project directory and looking for the `forge-std` package.
+
+## Automating the Execution of forge-test.sh
+
+To automate the execution of `forge-test.sh`, you can use the `test` task defined in the `.devcontainer/devcontainer.json` file. Follow these steps:
+
+1. Ensure the `forge-test.sh` script is executable by running `chmod +x forge-test.sh`.
+2. Use the `test` task to automate the execution of the `forge-test.sh` script with the `--fork-url` parameter.
+
+```sh
+devcontainer task test
+```
+
+This will run the `forge-test.sh` script with the `--fork-url` parameter and automate the execution of the tests.
