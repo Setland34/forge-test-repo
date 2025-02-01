@@ -16,6 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Remove existing directory
+        run: |
+          if [ -d "workspace-blank" ]; then
+            rm -rf workspace-blank
+          fi
+
+      - name: Clone repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Setland34/forge-test-repo workspace-blank
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -32,33 +44,9 @@ jobs:
           ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY
 
       - name: Cache dependencies
-        uses: actions/cache@v4.2.0
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
-      - uses: actions/cache/restore@v4
-        id: restore-cache
-        with:
-          key: cache-${{ hashFiles('**/lockfiles') }}
-
-      - name: Restore cached Prime Numbers
-        id: cache-prime-numbers-restore
-        uses: actions/cache/restore@v4
-        with:
-          key: ${{ runner.os }}-prime-numbers
-          path: |
-            path/to/dependencies
-            some/other/dependencies
-
-      - name: Always Save Prime Numbers
-        id: cache-prime-numbers-save
-        if: always() && steps.cache-prime-numbers-restore.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          key: ${{ steps.cache-prime-numbers-restore.outputs.cache-primary-key }}
-          path: |
-            path/to/dependencies
-            some/other/dependencies
