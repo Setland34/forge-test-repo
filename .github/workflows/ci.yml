@@ -22,10 +22,8 @@ jobs:
           fi
 
       - name: Clone repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git clone https://github.com/Setland34/forge-test-repo workspace-blank
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Setland34/forge-test-repo workspace-blank
 
       - name: Run a one-line script
         run: echo Hello, world!
