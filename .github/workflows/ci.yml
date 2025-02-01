@@ -2,11 +2,10 @@ name: CI Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,19 +13,22 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 'lts/*'
-
-      - name: Install dependencies
+      - name: Remove existing directory
         run: |
-          chmod +x forge-install.sh
-          ./forge-install.sh
+          if [ -d "workspace-blank" ]; then
+            rm -rf workspace-blank
+          fi
 
-      - name: Run tests
+      - name: Clone repository
         run: |
-          chmod +x forge-test.sh
-          ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY
+          git clone https://github.com/Setland34/forge-test-repo workspace-blank
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
