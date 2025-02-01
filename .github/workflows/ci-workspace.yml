@@ -1,39 +1,26 @@
-name: CI
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+  - name: Remove existing directory
+    run: |
+      if [ -d "workspace-blank" ]; then
+        rm -rf workspace-blank
+      fi
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+  - name: Run a one-line script
+    run: echo Hello, world!
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  - name: Run a multi-line script
+    run: |
+      echo Add other actions to build,
+      echo test, and deploy your project.
 
-      - name: Remove existing directory
-        run: |
-          if [ -d "workspace-blank" ]; then
-            rm -rf workspace-blank
-          fi
-
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+  - name: Cache dependencies
+    uses: actions/cache@v4
+    with:
+      path: |
+        node_modules
+      key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      restore-keys: |
+        ${{ runner.os }}-node-
