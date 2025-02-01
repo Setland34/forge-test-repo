@@ -20,6 +20,10 @@ jobs:
           if [ -d "workspace-blank" ]; then
             rm -rf workspace-blank
           fi
+          if [ -d "workspace-blank" ]; then
+            echo "Failed to remove workspace-blank directory"
+            exit 1
+          fi
 
       - name: Clone repository
         run: |
