@@ -1,24 +1,22 @@
 #!/bin/bash
 
-# This script sets up the necessary environment and dependencies for the project.
-
 # Update package lists
 sudo apt-get update
 
 # Install necessary packages
-sudo apt-get install -y build-essential git
+sudo apt-get install -y build-essential git npm
 
 # Clone the project repository
-git clone https://github.com/yourusername/yourproject.git
+git clone https://github.com/githubnext/workspace-blank.git
 
 # Navigate to the project directory
-cd yourproject
+cd workspace-blank
 
 # Install project dependencies
-# (Assuming a Node.js project for this example)
 npm install
 
 # Install foundry-rs/forge-std
 forge install foundry-rs/forge-std
 
+# Output a success message after the installation is completed
 echo "Forge install task completed successfully."
