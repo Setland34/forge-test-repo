@@ -86,23 +86,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Install Dependencies
+        run: /install.sh
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Build artifacts
+        run: /build.sh
 
-      - name: Cache
-        uses: actions/cache@v4.2.0
+      - uses: actions/cache/save@v4
+        id: cache
         with:
-          path: 
-          key: 
-          restore-keys: 
-          upload-chunk-size: 
-          enableCrossOsArchive: false
-          fail-on-cache-miss: false
-          lookup-only: false
-          save-always: false
+          path: path/to/dependencies
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 ```
