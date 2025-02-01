@@ -30,3 +30,16 @@ jobs:
         run: |
           chmod +x forge-test.sh
           ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY
+
+      - name: Cache dependencies
+        uses: actions/cache@v4.2.0
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - uses: actions/cache/restore@v4
+        id: restore-cache
+        with:
+          key: cache-${{ hashFiles('**/lockfiles') }}
