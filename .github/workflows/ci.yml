@@ -43,3 +43,22 @@ jobs:
         id: restore-cache
         with:
           key: cache-${{ hashFiles('**/lockfiles') }}
+
+      - name: Restore cached Prime Numbers
+        id: cache-prime-numbers-restore
+        uses: actions/cache/restore@v4
+        with:
+          key: ${{ runner.os }}-prime-numbers
+          path: |
+            path/to/dependencies
+            some/other/dependencies
+
+      - name: Always Save Prime Numbers
+        id: cache-prime-numbers-save
+        if: always() && steps.cache-prime-numbers-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ steps.cache-prime-numbers-restore.outputs.cache-primary-key }}
+          path: |
+            path/to/dependencies
+            some/other/dependencies
