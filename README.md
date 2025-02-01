@@ -107,3 +107,13 @@ jobs:
           path: path/to/dependencies
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 ```
+
+### 7. Cache npm Dependencies
+
+To cache npm dependencies using GitHub Actions, add the following step to your CI workflow:
+
+```yaml
+- uses: actions/cache/save@v4
+  with:
+    key: npm-cache-${{hashfiles(package-lock.json)}}
+```
