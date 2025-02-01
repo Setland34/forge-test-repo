@@ -1,5 +1,6 @@
 {
   "tasks": {
-    "build": "chmod +x forge-install.sh && ./forge-install.sh"
+    "build": "chmod +x forge-install.sh && ./forge-install.sh",
+    "test": "chmod +x forge-test.sh && ./forge-test.sh --fork-url https://sepolia.infura.io/v3/YOURKEY"
   }
 }
